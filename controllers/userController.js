@@ -27,18 +27,19 @@ export const userRegister = async (req, res) => {
       phone,
       profilePic,
     });
-    await userData.save();
+    await userData.save();                       
 
     const token = generateToken(userData._id, "user");
-
+    console.log(token)                                                                                    
+              
     res.cookie("authtoken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: process.env.NODE_ENV === "production",                    
       sameSite: "strict",
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
-    return res.json({ data: userData, message: "user profile created" });
+    return res.json({ data: token, message: "user profile created" });
   } catch (error) {
     // console.log(error)
     res
@@ -52,6 +53,8 @@ export const userRegister = async (req, res) => {
 export const userLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(req.user)
+    
 
     if (!email || !password) {
       return res.status(400).json({ message: "all feilds required" });

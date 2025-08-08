@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 dotenv.config("./.env");
 
-const dbpassword = process.env.DB_PASSWORD;
+const dbpassword = "FZjlDvuEKdWcb0D2";
 
 export const connectDB = async () => {
   try {
